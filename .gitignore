@@ -11,4 +11,6 @@
 .Rproj.user/
 
 #exec data files
-.rda
+*.rda
+
+las_reklamy_cache
