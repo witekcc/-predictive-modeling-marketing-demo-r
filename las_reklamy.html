@@ -243,38 +243,38 @@ klasyfikuj_obserwacje(r4[1024,], am3)</code></pre>
 ##  [8] 0.6468366 0.5451820 0.6540064 0.4588794 0.4410741</code></pre>
 <pre class="r"><code>proc.time() - ptm</code></pre>
 <pre><code>##    user  system elapsed 
-##    6.08    0.01    6.18</code></pre>
+##    6.29    0.00    6.32</code></pre>
 <p>PowyÅ¼ej widzimy wektor prawdopodobieÅstw pozytywnej odpowiedzi na kaÅ¼dÄ… z reklam przez wybranÄ… obserwacjÄ (tutaj przykÅadowo obserwacja nr 1024 z reklamy nr 4). Obserwacja pochodzi z reklamy 4 i odpowiedziaÅa na niÄ… negatywnie (wynik==“nie”). Klasyfikator przewidziaÅ prawdopodobieÅstwo pozytywnej odpowiedzi dla reklamy 4 na poziomie 45%. Klasyfikator wyestymowaÅ najwiÄksze prawdopodobieÅstwo pozytywnej odpowiedzi przez obserwacjÄ na reklamÄ nr 7 i jest ono na poziomie 71,7%. GdybyÅmy przed pokazaniem obserwacji reklamy wziÄli pod uwagÄ informacje z klasyfikatora to nie pokazalibyÅmy jej reklamy nr 4 (na ktÃ³rÄ… wiemy Å¼e nie odpowiedziaÅa) tylko reklamÄ nr 7 (dla ktÃ³rej prawdpodobieÅstwo odpowiedzi pozytywnej jest znacznie wiÄksze zatem mamy wiÄksze szanse, Å¼e obserwacja ostatecznie dokonaÅaby zakupu).</br></br><br></p>
 <p>JeÅli chcemy zobaczyÄ przykÅadowy wynik wywoÅania dla losowej obserwacji wystarczy wywoÅaÄ</p>
 <pre class="r"><code>i&lt;-sample(nrow(dane),1)
 dane[i,] </code></pre>
-<pre><code>##             id plec    miasto_kat wojewodztwo  domena_kat wiek   IPA
-## 209626 4714841    k miasto_woj154       woj32 domena_kat9   62 ipA12
-##           IPB wynik typ_adresu    wybory poczta       data ad_id
-## 209626 ipB446   nie mieszkanie wybory323   c017 2014-11-11     2</code></pre>
+<pre><code>##             id plec   miasto_kat wojewodztwo   domena_kat wiek  IPA  IPB
+## 274236 2296559    k miasto_woj33       woj15 domena_kat25   53 ipA4 ipB4
+##        wynik typ_adresu    wybory poczta       data ad_id
+## 274236   nie mieszkanie wybory355   c038 2014-11-13     5</code></pre>
 <pre class="r"><code>klasyfikuj_obserwacje(dane[i,], am3)</code></pre>
-<pre><code>##  [1] 0.4588288 0.4456725 0.4301707 0.2489073 0.4300291 0.6321698 0.6229279
-##  [8] 0.4143994 0.4665034 0.2324867 0.5323207 0.4250681</code></pre>
+<pre><code>##  [1] 0.4621040 0.4248002 0.5121017 0.4676091 0.4768634 0.6507475 0.6260038
+##  [8] 0.4307751 0.4403446 0.5273758 0.4678931 0.3626821</code></pre>
 <p>Dla losowej obserwacji pozytywnej:</p>
 <pre class="r"><code>i&lt;-sample(which(dane$wynik==&quot;tak&quot;),1)
 dane[i,]</code></pre>
-<pre><code>##             id plec   miasto_kat wojewodztwo   domena_kat wiek   IPA
-## 414474 3279308    k miasto_woj99        woj3 domena_kat10   61 ipA17
-##           IPB wynik typ_adresu    wybory poczta       data ad_id
-## 414474 ipB853   tak  wiezowiec wybory413   c032 2014-11-13    11</code></pre>
+<pre><code>##             id plec   miasto_kat wojewodztwo   domena_kat wiek  IPA
+## 209299 4713686    k miasto_woj25       woj18 domena_kat24   22 ipA2
+##            IPB wynik typ_adresu wybory poczta       data ad_id
+## 209299 ipB1225   tak                          2014-11-11     2</code></pre>
 <pre class="r"><code>klasyfikuj_obserwacje(dane[i,], am3)</code></pre>
-<pre><code>##  [1] 0.3873238 0.5317586 0.5403702 0.5844715 0.5569960 0.6278186 0.3762455
-##  [8] 0.5423470 0.5745422 0.2398348 0.5049614 0.6055762</code></pre>
+<pre><code>##  [1] 0.28359794 0.50615686 0.52050804 0.09852516 0.46345334 0.71740740
+##  [7] 0.34704538 0.48821191 0.33153423 0.55682895 0.34458792 0.33306586</code></pre>
 <p>Dla losowej obserwacji negatywnej:</p>
 <pre class="r"><code>i&lt;-sample(which(dane$wynik==&quot;nie&quot;),1)
 dane[i,]</code></pre>
-<pre><code>##             id plec    miasto_kat wojewodztwo  domena_kat wiek  IPA  IPB
-## 480612 6620622    m miasto_woj154        woj6 domena_kat9   41 ipA4 ipB4
-##        wynik typ_adresu    wybory poczta       data ad_id
-## 480612   nie mieszkanie wybory397   c007 2014-11-14    12</code></pre>
+<pre><code>##             id plec    miasto_kat wojewodztwo   domena_kat wiek   IPA
+## 293540 4343526    k miasto_woj154       woj10 domena_kat18   53 ipA23
+##            IPB wynik typ_adresu    wybory poczta       data ad_id
+## 293540 ipB4580   nie mieszkanie wybory145   c066 2014-11-11     6</code></pre>
 <pre class="r"><code>klasyfikuj_obserwacje(dane[i,], am3)</code></pre>
-<pre><code>##  [1] 0.4733774 0.5746425 0.2981738 0.5969580 0.4723329 0.6014147 0.4537179
-##  [8] 0.5881383 0.5491276 0.5633812 0.5091412 0.4657284</code></pre>
+<pre><code>##  [1] 0.5349439 0.4450548 0.6584334 0.3294559 0.5087431 0.6495891 0.5979387
+##  [8] 0.6667727 0.4933194 0.3409635 0.5612072 0.5769136</code></pre>
 <p><strong>Przykladowe Testy</strong><br><br> Testy opieraÅy siÄ na badaniu wynikÃ³w klasyfikacji dla osÃ³b ktÃ³re odpowiedziaÅy negatywnie na pokazanÄ… reklamÄ. MajÄ… one na celu pokazaÄ jak czÄsto uÅ¼ywajÄ…c danego klasyfikatora nie popeÅnilibyÅmy bÅÄdu pokazujÄ…c reklamÄ ktÃ³rÄ… badany czÅowiek nie jest zainteresowany. Liczba negatywnych obserwacji losowanych z caÅego zbioru do zbioru testowego : 2000 <br><br> <strong>Dla klasyfikatora am4</strong>. PoniÅ¼ej znajduje siÄ “confusion matrix” , predykcje jako wiersze, prawdziwe klasy jako kolumny</p>
 <pre class="r"><code>testowy4&lt;-readRDS(file = &quot;testowy4.rda&quot;)
 pred1am4&lt;- readRDS(file = &quot;pred1am4.rda&quot;)
